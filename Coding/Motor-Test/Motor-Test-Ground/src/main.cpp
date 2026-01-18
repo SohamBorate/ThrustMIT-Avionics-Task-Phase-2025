@@ -15,7 +15,6 @@ BOOT => waiting for initialisation of all systems
 SAFE => wait for ignition
 IGNITE => fire both mosfets
 RECOVER => stop
-FAILURE => something went wrong
 */
 
 enum MACHINE_STATE {
@@ -23,7 +22,6 @@ enum MACHINE_STATE {
     SAFE,
     ARMED,
     IGNITE,
-    FAILURE,
     RECOVER
 };
 
@@ -127,7 +125,6 @@ void setup() {
     pinMode(red_led_pin, OUTPUT);
 
     if (!rylr_setup()) {
-        // sd_card_component_log("machine", "state change", "failure");
         Serial.println("rylr fail");
         return;
     }
@@ -142,7 +139,6 @@ void setup() {
         String data = rylr_receive_parse(rylr_receive());
         if (data == "SAFE") {
             machine_state = SAFE;
-            // sd_card_component_log("machine", "state change", "ignite");
             Serial.println("test stand ready");
             digitalWrite(green_led_pin, HIGH);
         } else {
@@ -160,8 +156,8 @@ void setup() {
 
     // this pauses until data is received so no need for a loop
     String data = rylr_receive_parse(rylr_receive());
-    while (data != "RECOVER" || data != "FAILURE") {
-        Serial.print("rylr998 unexpected data received: "); Serial.println(data);
+    while (data != "RECOVER") {
+        Serial.println(data); // telemetry data expected
     }
     Serial.print("test stand status: "); Serial.println(data);
 

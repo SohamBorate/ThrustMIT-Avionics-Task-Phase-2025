@@ -9,10 +9,11 @@
 #define pressure_transducer_pin 4
 #define load_cell_pin 5
 
-#define window_size 10
+#define record_duration 60 // seconds
+#define telemetry_frequency 10 // how many times in a second will data be transmitted to ground station
 
 // store data as which data type
-#define value_dtype uint8_t
+#define value_dtype uint16_t
 
 // packed ensures no padding bytes (unnecessary) (compiler is the imposter)
 struct __attribute__((packed)) data_entry {

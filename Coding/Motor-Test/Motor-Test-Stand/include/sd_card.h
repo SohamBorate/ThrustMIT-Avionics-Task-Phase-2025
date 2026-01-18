@@ -11,8 +11,7 @@
 #define SD_CARD_PIN BUILTIN_SDCARD
 
 int sd_card_setup();
-// void sd_card_component_log(String component, String type, String remark);
-void sd_card_data_log(value_dtype thrust, value_dtype pressure);
+void sd_card_data_log(uint32_t timestamp, value_dtype thrust, value_dtype pressure);
 void sd_card_close();
 
 #endif
