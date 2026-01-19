@@ -70,12 +70,12 @@ void setup() {
     digitalWrite(redundant_mosfet_pin, HIGH);
 
     // initial 3 second record to turn off mosfet
-
+    uint32_t curr_micros = micros();
+    const uint32_t ignite_timestamp = curr_micros;
     uint32_t time_spent = 0;
     uint32_t timeout = 3 * 1000 * 1000; // microseconds
     int curr_thrust = read_thrust();
     int curr_pressure = read_pressure();
-    uint32_t curr_micros = micros();
     uint32_t record_start = curr_micros;
     uint32_t last_telemetry_ping = curr_micros;
 
@@ -83,7 +83,7 @@ void setup() {
         curr_micros = micros();
         curr_thrust = read_thrust();
         curr_pressure = read_pressure();
-        sd_card_data_log(curr_micros, curr_thrust, curr_pressure);
+        sd_card_data_log(curr_micros - ignite_timestamp, curr_thrust, curr_pressure);
         time_spent = curr_micros - record_start;
         if (curr_micros - last_telemetry_ping > telemetry_delay) {
             rylr_send((String)curr_micros + "," + (String)curr_thrust + "," + (String)curr_pressure);
