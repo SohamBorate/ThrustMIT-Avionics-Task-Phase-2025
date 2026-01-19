@@ -11,7 +11,7 @@ int main() {
 
     data_entry entry;
     for (int i = 0; i < 100; i++) {
-        entry.timestamp = i;
+        entry.timestamp = i * 10000;
         entry.thrust = i * sin(i) + 1000;
         entry.pressure = i * cos(i) + 1000;
         data_csv.write(reinterpret_cast<char*>(&entry), sizeof(entry));

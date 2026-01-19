@@ -43,7 +43,7 @@ int main() {
         thrust_newtons_smooth.append(thrust_newtons);
         pressure_pascals_smooth.append(pressure_pascals);
         std::cout
-            << std::to_string(entry.timestamp)
+            << std::to_string((double)entry.timestamp / 1000000.0) // usec to sec
             << "," << std::to_string(entry.thrust)
             << "," << std::to_string(thrust_newtons)
             << "," << std::to_string(thrust_newtons_smooth.curr_avg)
@@ -52,7 +52,7 @@ int main() {
             << "," << std::to_string(pressure_pascals_smooth.curr_avg)
             << "\n";
         data_csv
-            << std::to_string(entry.timestamp)
+            << std::to_string((double)entry.timestamp / 1000000.0)
             << "," << std::to_string(entry.thrust)
             << "," << std::to_string(thrust_newtons)
             << "," << std::to_string(thrust_newtons_smooth.curr_avg)
