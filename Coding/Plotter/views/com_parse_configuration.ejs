@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<%- include("components/head"); %>
+
+<body>
+    <center>
+        <h1>ThrustMIT Motor Test Plotter</h1>
+        <h3>COM Parse Configuration</h3>
+        <form action="/com_parse_configuration" method="POST">
+            <input hidden type="number" id="no_parameters" name="no_parameters">
+            <label for="separator">Separator</label>
+            <input type="text" id="separator" name="separator" value=","><br><br>
+
+            <div id="com-parse-configs">
+                <div id="com-parse-config-form" class="com-parse-config-form">
+                    <h3>Parameter 1</h3>
+                    <label for="id_1">Parameter Id</label>
+                    <input type="text" id="id_1" name="id_1"><br>
+
+                    <label for="index_1">Parameter index in COM port message</label>
+                    <input type="text" id="index_1" name="index_1"><br>
+
+                    <label for="conversion_1">Conversion function to be applied</label>
+                    <select name="conversion_1" id="conversion_1">
+                        <% for (let i = 0; i < conversion_funcs.length; i++) { %>
+                            <option value="<%= conversion_funcs[i] %>"><%= conversion_funcs[i] %></option>
+                        <% } %>
+                    </select><br><br>
+                </div>
+            </div>
+            <button type = "button" id="add-parameter-config">Add parameter</button><br><br>
+            <button type="submit">Next</button>
+        </form>
+    </center>
+    <script src="/js/com_parse_configuration.js"></script>
+</body>
+
+</html>

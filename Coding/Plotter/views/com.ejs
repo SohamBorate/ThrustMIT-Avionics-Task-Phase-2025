@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<%- include("components/head"); %>
+
+<body>
+    <center>
+        <h1>ThrustMIT Motor Test Plotter</h1>
+        <h3>Connect COM Port</h3>
+        <form action="/com_connect" method="POST">
+
+            <label for="port">Port</label>
+            <select name="port" id="port">
+                <% for (let i = 0; i < ports.length; i++) { %>
+                    <option value="<%= ports[i] %>"><%= ports[i] %></option>
+                <% } %>
+            </select><br>
+
+            <label for="baud_rate">Baud Rate</label>
+            <select name="baud_rate" id="baud_rate">
+                <option value="9600">9600</option>
+                <option value="115200">115200</option>
+            </select><br>
+
+            <button type="submit">Connect</button>
+        </form>
+    </center>
+</body>
+
+</html>

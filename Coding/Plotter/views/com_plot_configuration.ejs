@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<%- include("components/head"); %>
+
+<body>
+    <center>
+        <h1>ThrustMIT Motor Test Plotter</h1>
+        <h3>COM Plot Configuration</h3>
+        <form action="/com_plot_configuration" method="POST">
+            <input hidden type="number" id="no_plots" name="no_plots">
+
+            <div id="com-plot-configs">
+                <div id="com-plot-config-form" class="com-plot-config-form">
+                    <h3>Plot 1</h3>
+                    <label for="title_1">Plot title</label>
+                    <input type="text" id="title_1" name="title_1"><br><br>
+
+                    <label for="xaxislabel_1">X axis label</label>
+                    <input type="text" id="xaxislabel_1" name="xaxislabel_1"><br>
+
+                    <label for="xaxistype_1">X axis type</label>
+                    <select name="xaxistype_1" id="xaxistype_1">
+                        <% for (let i = 0; i < headers.length; i++) { %>
+                            <option value="<%= headers[i] %>"><%= headers[i] %></option>
+                        <% } %>
+                    </select><br><br>
+
+                    <label for="yaxislabel_1">Y axis label</label>
+                    <input type="text" id="yaxislabel_1" name="yaxislabel_1"><br>
+
+                    <label for="yaxistype_1">Y axis type</label>
+                    <select name="yaxistype_1" id="yaxistype_1">
+                        <% for (let i = 0; i < headers.length; i++) { %>
+                            <option value="<%= headers[i] %>"><%= headers[i] %></option>
+                        <% } %>
+                    </select><br><br>
+                </div>
+            </div>
+
+            <button type = "button" id="add-plot-config">Add plot</button><br><br>
+            <button type="submit">Plot</button>
+        </form>
+    </center>
+    <script src="/js/com_plot_configuration.js"></script>
+</body>
+
+</html>

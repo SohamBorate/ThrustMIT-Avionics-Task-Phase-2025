@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<%- include("components/head"); %>
+
+<body>
+    <center>
+        <h1>ThrustMIT Motor Test Plotter</h1>
+        <h3>Upload CSV</h3>
+        <form action="/csv_upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="datafile">
+            <button type="submit">Upload</button>
+        </form>
+    </center>
+</body>
+
+</html>
