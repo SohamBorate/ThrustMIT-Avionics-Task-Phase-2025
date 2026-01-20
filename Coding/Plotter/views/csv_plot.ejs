@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<%- include("components/head"); %>
+
+<body>
+    <center>
+        <h1>ThrustMIT Motor Test Plotter</h1>
+        <div id="csv-source"><%= csv_source %></div>
+        <% for (let i = 0; i < parameters.length; i++) { %>
+            <div
+                class="parameter_graph"
+                id="<%= parameters[i].title %>"
+                xaxislabel="<%= parameters[i].xaxislabel %>"
+                xaxistype="<%= parameters[i].xaxistype %>"
+                yaxislabel="<%= parameters[i].yaxislabel %>"
+                yaxistype="<%= parameters[i].yaxistype %>"
+            ></div>
+        <% } %>
+    </center>
+    <script src="/js/plotly-3.3.0.min.js"></script>
+    <script src="/js/d3.v7.min.js"></script>
+    <script src="/js/csv_plot.js"></script>
+</body>
+
+</html>
